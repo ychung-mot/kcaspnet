@@ -11,8 +11,8 @@ namespace kcmvc.Autentication
             app.UseKeycloakAuthentication(new KeycloakAuthenticationOptions
             {
                 Realm = "onestopauth-business",
-                ClientId = "hets",
-                ClientSecret = "3Uwbr6WFbX0TWn2A4OtFagFOqhWrIfZK",
+                ClientId = "awp-2146",
+                ClientSecret = "RoQ8AZfVzuqEDWHCqt8HJxuyRSIvo7cp",
                 KeycloakUrl = "http://localhost:9030/auth",
 
                 AuthenticationType = Constants.AwpAuthType,
