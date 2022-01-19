@@ -18,6 +18,7 @@ namespace kcmvc.Autentication
                 AuthenticationType = Constants.AwpAuthType,
                 SignInAsAuthenticationType = Constants.AwpAuthType,
 
+                EnableBearerTokenAuth = true,
                 AllowUnsignedTokens = false,
                 DisableIssuerSigningKeyValidation = false,
                 DisableIssuerValidation = false,
