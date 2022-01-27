@@ -1,4 +1,6 @@
-﻿using Owin;
+﻿using Microsoft.Owin;
+using Microsoft.Owin.Security.OAuth;
+using Owin;
 using Owin.Security.Keycloak;
 using System;
 
@@ -6,8 +8,17 @@ namespace kcmvc.Autentication
 {
     public static class AppBuilderExtension
     {
-        public static IAppBuilder UseAwpKeycloakAuthentication(this IAppBuilder app)
+        public static IAppBuilder UseAwpAuthentication(this IAppBuilder app)
         {
+            var oAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/api/transfer/token"),
+                Provider = new AppOAuthProvider("self"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(7),
+                AllowInsecureHttp = true
+            };
+            app.UseOAuthBearerTokens(oAuthOptions);
+
             app.UseKeycloakAuthentication(new KeycloakAuthenticationOptions
             {
                 Realm = "onestopauth-business",

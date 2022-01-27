@@ -2,6 +2,9 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using kcmvc.Autentication;
+using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin;
+using System;
 
 namespace kcmvc
 {
@@ -16,7 +19,8 @@ namespace kcmvc
                 AuthenticationType = Constants.AwpAuthType
             });
 
-            app.UseAwpKeycloakAuthentication();
+            app.UseAwpAuthentication();
+
         }
     }
 }
