@@ -51,6 +51,8 @@ namespace kcmvc.Autentication
             // Setting  
             claims.Add(new Claim(ClaimTypes.Name, context.UserName));
             claims.Add(new Claim(ClaimTypes.Role, "DataIngest"));
+            //claims.Add(new Claim(ClaimTypes.NameIdentifier, "E5468E6A96904CF59C2B6A8EA5286EBF"));
+            claims.Add(new Claim("identity_provider", "awp_idprovider"));
 
             // Setting Claim Identities for OAUTH 2 protocol.  
             ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);

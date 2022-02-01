@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kcmvc", "kcmvc\kcmvc.csproj", "{B044208B-0FD2-4754-81D5-745F1E313BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keycloak.IdentityModel", "Keycloak.IdentityModel\Keycloak.IdentityModel.csproj", "{FA6DDDD7-366A-4012-ACF2-252C599F80C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Owin.Security.Keycloak", "Owin.Security.Keycloak\Owin.Security.Keycloak.csproj", "{16EDD97E-727A-4366-BF79-629295A162D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Final|Any CPU = Final|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Final|Any CPU.ActiveCfg = Debug|Any CPU
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Final|Any CPU.Build.0 = Debug|Any CPU
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B044208B-0FD2-4754-81D5-745F1E313BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Final|Any CPU.ActiveCfg = Final|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Final|Any CPU.Build.0 = Final|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6DDDD7-366A-4012-ACF2-252C599F80C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Final|Any CPU.ActiveCfg = Final|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Final|Any CPU.Build.0 = Final|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16EDD97E-727A-4366-BF79-629295A162D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E73494AB-D3B6-4592-8D7D-CA8584A4C0F0}
+	EndGlobalSection
+EndGlobal

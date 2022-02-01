@@ -1,7 +1,7 @@
 ﻿using kcmvc.Services;
 using Microsoft.Owin;
-using System.Collections.Generic;
-using System.Diagnostics;
+using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -10,29 +10,47 @@ namespace kcmvc.Autentication
 {
     public class PostAuthenticationHandler : OwinMiddleware
     {
-        private IUserService _userService;
+        private IUserManagerService _userManagerService;
 
         public PostAuthenticationHandler(OwinMiddleware next) : base(next)
         {
-            _userService = DependencyResolver.Current.GetService<IUserService>();
+            _userManagerService = DependencyResolver.Current.GetService<IUserManagerService>();
         }
 
         public override async Task Invoke(IOwinContext context)
         {
             if (context.Request.User.Identity.IsAuthenticated)
             {
-                Debug.WriteLine(context.Request.User.Identity.Name);
-                Debug.WriteLine(_userService.GetUserRole(context.Request.User.Identity.Name));
                 var user = (ClaimsPrincipal)context.Request.User;
 
-                var claims = new List<Claim>();
+                var username = (user.FindFirst(ClaimTypes.Name)?.Value ?? "").ToLowerInvariant().Trim();
 
-                //read DB to get permissions and add claims to the user
-                claims.Add(new Claim("AWP_PERMISSION", "read"));
+                var identityProvider = (user.FindFirst("identity_provider")?.Value ?? "").ToLowerInvariant().Trim();
+                var userid = "";
 
-                claims.Add(new Claim(ClaimTypes.Name, user.Identity.Name));
+                switch (identityProvider)
+                {
+                    case "idir":
+                        userid = user.FindFirst("idir_userid")?.Value ?? "";
+                        break;
+                    case "bceid-business":
+                        userid = user.FindFirst("bceid_userid")?.Value ?? "";
+                        break;
+                    default:
+                        userid = _userManagerService.GetUserIdentifierByBusinessId(username)?.Guid.ToString("N");
+                        break;
+                }
 
-                user.AddIdentity(new ClaimsIdentity(claims));
+                var userGuid = userid == null || userid == "" ? Guid.Empty : new Guid(userid);
+                var identifier = _userManagerService.GetSecurityIdentifierByGUID(userGuid);
+                var roles = _userManagerService.GetRolesBySecurityIdentifierId(identifier.SecurityIdentifierId);
+
+                foreach (var role in roles)
+                {
+                    user.Identities.FirstOrDefault().AddClaim(new Claim(ClaimTypes.Role, role));
+                }
+
+                user.Identities.FirstOrDefault().AddClaim(new Claim(ClaimTypes.NameIdentifier, userid));
             }
 
             await Next.Invoke(context);
