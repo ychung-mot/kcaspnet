@@ -2,9 +2,6 @@
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using kcmvc.Autentication;
-using Microsoft.Owin.Security.OAuth;
-using Microsoft.Owin;
-using System;
 
 namespace kcmvc
 {
@@ -17,7 +14,6 @@ namespace kcmvc
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = Constants.AwpAuthType,
-                LoginPath = new PathString("/Account/Login"),
             });
 
             app.UseAwpAuthentication();
