@@ -1,5 +1,6 @@
 ﻿using IdentityModel;
 using IdentityModel.Client;
+using kcmvc.Authorization;
 using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -109,7 +110,7 @@ namespace kcmvc.Controllers
             return View();
         }
 
-        [Authorize]
+        [KcAuthorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

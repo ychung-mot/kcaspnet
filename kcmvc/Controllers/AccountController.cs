@@ -11,6 +11,12 @@ namespace kcmvc.Controllers
 {
     public class AccountController : Controller
     {
+        public ActionResult Login()
+        {
+            ViewBag.Title = "Login";
+            return View();
+        }
+
         public void SignIn()
         {
             var properties = new Dictionary<string, string>();

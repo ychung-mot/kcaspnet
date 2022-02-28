@@ -16,7 +16,8 @@ namespace kcmvc
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationType = Constants.AwpAuthType
+                AuthenticationType = Constants.AwpAuthType,
+                LoginPath = new PathString("/Account/Login"),
             });
 
             app.UseAwpAuthentication();

@@ -36,8 +36,6 @@ namespace kcmvc.Autentication
                 DisableAudienceValidation = false,
                 TokenClockSkew = TimeSpan.FromSeconds(2),
                 DisableAllRefreshTokenValidation = true, //Fix for Keycloak server v4.6-4.8
-
-                //IdentityProvider = "bceid-business"
             });
 
             app.Use<PostAuthenticationHandler>();
