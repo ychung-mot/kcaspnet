@@ -3,9 +3,20 @@
     ViewBag.Title = "Login";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="col d-flex justify-content-center">
+    <div class="card text-center" style="width: 30rem;">
+        <div id="header_title" class="card-header">
+            <h3 style="height: 3rem; vertical-align:middle; display:table-cell;">
+                Authenticate with:
+            </h3>
+        </div>
 
-<button type="button" class="btn btn-primary">@Html.ActionLink("IDIR Login", "Signin", "Account", new { @style = "color:#ffffff;text-decoration:none;" })</button>
-
-
+        <div class="card-body">
+            <div class="btn-group-vertical">
+                <button type="button" class="btn btn-primary my-2">@Html.ActionLink("IDIR", "SignIn", "Account", new { idpHint = "idir", redirectUrl = ViewBag.RedirectUrl }, new { @style = "color:#ffffff;text-decoration:none;" })</button>
+                <button type="button" class="btn btn-primary my-2">@Html.ActionLink("Business BCeID", "SignIn", "Account", new { idpHint = "bceid-business", redirectUrl = ViewBag.RedirectUrl }, new { @style = "color:#ffffff;text-decoration:none;" })</button>
+            </div>
+        </div>
+    </div>
+</div>
 

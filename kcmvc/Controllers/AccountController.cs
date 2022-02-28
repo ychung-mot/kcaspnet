@@ -17,19 +17,14 @@ namespace kcmvc.Controllers
             return View();
         }
 
-        public void SignIn()
+        public void SignIn(string idpHint, string redirectUrl)
         {
-            var properties = new Dictionary<string, string>();
-            properties["RedirectUri"] = null;
-            properties["IdpHint"] = "idir";
+            var authProps = new AuthenticationProperties { RedirectUri = redirectUrl };
 
+            if (idpHint != null)
+                authProps.Dictionary.Add("IdpHint", idpHint);
 
-            // Send an OpenID Connect sign-in request.
-            if (!Request.IsAuthenticated)
-            {
-                HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties(properties),
-                    OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType, Constants.AwpAuthType);
-            }
+            HttpContext.GetOwinContext().Authentication.Challenge(authProps, Constants.AwpAuthType);
         }
 
         public void SignOut()

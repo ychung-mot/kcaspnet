@@ -12,12 +12,14 @@ namespace kcmvc.Authorization
         {
             var context = filterContext.HttpContext;
 
+            Console.WriteLine(filterContext.HttpContext.Request.Path);
+
             if (!context.Request.IsAuthenticated)
             {
                 filterContext.Result = new ViewResult
                 {
                     ViewName = "~/Views/Account/Login.cshtml",
-                    ViewBag = { Title = "Login" }
+                    ViewBag = { Title = "Login", RedirectUrl = filterContext.HttpContext.Request.Url.ToString() }                    
                 };
             }
         }
