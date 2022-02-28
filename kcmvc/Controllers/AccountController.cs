@@ -16,8 +16,8 @@ namespace kcmvc.Controllers
             // Send an OpenID Connect sign-in request.
             if (!Request.IsAuthenticated)
             {
-                HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "/" },
-                    OpenIdConnectAuthenticationDefaults.AuthenticationType);
+                HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = null },
+                    OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType, Constants.AwpAuthType);
             }
         }
 
@@ -27,7 +27,7 @@ namespace kcmvc.Controllers
 
             HttpContext.GetOwinContext().Authentication.SignOut(
                 new AuthenticationProperties { RedirectUri = callbackUrl },
-                OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType);
+                OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType, Constants.AwpAuthType);
         }
 
         public ActionResult SignOutCallback()

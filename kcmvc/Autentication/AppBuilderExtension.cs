@@ -25,6 +25,7 @@ namespace kcmvc.Autentication
                 ClientSecret = ConfigurationManager.AppSettings["KcClientSecret"],
                 KeycloakUrl = ConfigurationManager.AppSettings["KcAuthUrl"],
 
+                PostLogoutRedirectUrl = "/account/SignOutCallback",
                 AuthenticationType = Constants.AwpAuthType,
                 SignInAsAuthenticationType = Constants.AwpAuthType,
 
@@ -35,6 +36,8 @@ namespace kcmvc.Autentication
                 DisableAudienceValidation = false,
                 TokenClockSkew = TimeSpan.FromSeconds(2),
                 DisableAllRefreshTokenValidation = true, //Fix for Keycloak server v4.6-4.8
+
+                //IdentityProvider = "bceid-business"
             });
 
             app.Use<PostAuthenticationHandler>();

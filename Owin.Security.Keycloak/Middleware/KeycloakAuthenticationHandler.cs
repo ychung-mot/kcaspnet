@@ -290,7 +290,7 @@ namespace Owin.Security.Keycloak.Middleware
         {
             if (string.IsNullOrEmpty(properties.RedirectUri))
             {
-                properties.RedirectUri = Request.Uri.ToString();
+                properties.RedirectUri = Request.Uri.GetLeftPart(System.UriPartial.Authority);
             }
 
             // Create state

@@ -294,6 +294,8 @@ namespace Keycloak.IdentityModel
 		{
 			if (parameters == null) throw new ArgumentNullException(nameof(parameters));
 			if (baseUri == null) throw new ArgumentNullException(nameof(baseUri));
+			if (redirectUrl == null)
+				redirectUrl = baseUri.GetLeftPart(System.UriPartial.Authority) + parameters.PostLogoutRedirectUrl;
 
 			// Generate logout URI and data
 			var uriManager = await OidcDataManager.GetCachedContextAsync(parameters);
