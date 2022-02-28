@@ -293,6 +293,11 @@ namespace Owin.Security.Keycloak.Middleware
                 properties.RedirectUri = Request.Uri.GetLeftPart(System.UriPartial.Authority);
             }
 
+            if (properties.Dictionary.ContainsKey("IdpHint") && !string.IsNullOrWhiteSpace(properties.Dictionary["IdpHint"]))
+            {
+                Options.IdentityProvider = properties.Dictionary["IdpHint"];
+            }
+
             // Create state
             var stateData = new Dictionary<string, object>
             {

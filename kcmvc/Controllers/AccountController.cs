@@ -13,10 +13,15 @@ namespace kcmvc.Controllers
     {
         public void SignIn()
         {
+            var properties = new Dictionary<string, string>();
+            properties["RedirectUri"] = null;
+            properties["IdpHint"] = "idir";
+
+
             // Send an OpenID Connect sign-in request.
             if (!Request.IsAuthenticated)
             {
-                HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = null },
+                HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties(properties),
                     OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType, Constants.AwpAuthType);
             }
         }
