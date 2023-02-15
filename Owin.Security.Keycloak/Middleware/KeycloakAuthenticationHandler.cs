@@ -293,10 +293,10 @@ namespace Owin.Security.Keycloak.Middleware
                 properties.RedirectUri = Request.Uri.GetLeftPart(System.UriPartial.Authority);
             }
 
-            if (properties.Dictionary.ContainsKey("IdpHint") && !string.IsNullOrWhiteSpace(properties.Dictionary["IdpHint"]))
-            {
-                Options.IdentityProvider = properties.Dictionary["IdpHint"];
-            }
+            //if (properties.Dictionary.ContainsKey("IdpHint") && !string.IsNullOrWhiteSpace(properties.Dictionary["IdpHint"]))
+            //{
+            //    Options.IdentityProvider = properties.Dictionary["IdpHint"];
+            //}
 
             // Create state
             var stateData = new Dictionary<string, object>
@@ -305,8 +305,15 @@ namespace Owin.Security.Keycloak.Middleware
             };
             var state = Global.StateCache.CreateState(stateData);
 
+            var url = (await KeycloakIdentity.GenerateLoginUriAsync(Options, Request.Uri, state)).ToString();
+
+            if (properties.Dictionary.ContainsKey("IdpHint") && !string.IsNullOrWhiteSpace(properties.Dictionary["IdpHint"]))
+            {
+                url = $"{url}&kc_idp_hint={properties.Dictionary["IdpHint"]}";
+            }
+
             // Redirect response to login
-            Response.Redirect((await KeycloakIdentity.GenerateLoginUriAsync(Options, Request.Uri, state)).ToString());
+            Response.Redirect(url);
         }
 
         private async Task LogoutRedirectAsync()

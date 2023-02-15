@@ -51,7 +51,8 @@ namespace Owin.Security.Keycloak
         public string Scope { get; set; }
 
         /// <summary>
-        ///     OPTIONAL: Choose a default identity provider to use for the application
+        ///     Removed set - Use IdpHint instead
+        ///     OPTIONAL: Choose a default identity provider to use for the application 
         /// </summary>
         /// <remarks>
         ///     - The value here must be a valid IDP ID in the specified Keycloak realm
@@ -59,7 +60,7 @@ namespace Owin.Security.Keycloak
         ///     - The Keycloak login page will not be shown when this option is non-empty
         ///     - Default: None
         /// </remarks>
-        public string IdentityProvider { get; set; }
+        public string IdentityProvider { get; }
 
         /// <summary>
         ///     OPTIONAL: The absolute or relative URL for users to be redirected to after logout
